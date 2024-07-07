@@ -7,6 +7,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/urfave/cli/v2"
+	libconfig "github.com/cri-o/cri-o/pkg/config"
 )
 
 // The actual test suite
@@ -32,7 +33,7 @@ var _ = t.Describe("CLI", func() {
 		}
 
 		// When
-		res := criocli.StringSliceTrySplit(ctx, flagName)
+		res := libconfig.StringSliceTrySplit(ctx, flagName)
 
 		// Then
 		Expect(res).NotTo(BeNil())
@@ -50,7 +51,7 @@ var _ = t.Describe("CLI", func() {
 		Expect(slice.Set("value2")).To(Succeed())
 
 		// When
-		res := criocli.StringSliceTrySplit(ctx, flagName)
+		res := libconfig.StringSliceTrySplit(ctx, flagName)
 		res[0] = "value3"
 
 		// Then
